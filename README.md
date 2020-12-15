@@ -1,5 +1,8 @@
 # Introduction
 =================================================================================================================================================================================
+Desired Output will be:
+
+![Counting-Animation](https://github.com/Mashood97/Counting-Animation-Flutter/blob/master/ezgif.com-gif-maker.gif)
 
 1) First goto your pubspec.yaml file and add dependency:
    ```
