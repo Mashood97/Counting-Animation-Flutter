@@ -5,8 +5,9 @@ This is a very simple and useful counting animation for flutter devs!
 How to use this package:
 
 1) First goto your pubspec.yaml file and add dependency:
-    counting_animation:
-    
+   ```
+   counting_animation:
+   ```
 2) run flutter pub get to update the packages dependencies.
 
 3) In your code, you can use it like this:
