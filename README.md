@@ -1,5 +1,5 @@
 # Introduction
-=======
+=================================================================================================================================================================================
 
 1) First goto your pubspec.yaml file and add dependency:
    ```
@@ -60,11 +60,13 @@ curve: Curves.decelerate,
 duration: Duration(seconds: 500),
 
 ```
-=======
+
+=================================================================================================================================================================================
 # SUPPORT
 You liked this package? then give it a star. If you want to help then:
 Star this repository.
 Send a Pull Request with new features, see Contribution Guidelines.
 Share this package.
 Create issues if you find a Bug or want to suggest something.
-=======
+
+=================================================================================================================================================================================
