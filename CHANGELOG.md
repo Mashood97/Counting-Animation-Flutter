@@ -1,3 +1,2 @@
-## [0.0.1] - TODO: Add release date.
-
-* TODO: Describe initial release.
+[0.0.1] - 15-Dec-2020
+Initial release with Simple Counting Animation

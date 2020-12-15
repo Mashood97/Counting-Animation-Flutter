@@ -7,7 +7,7 @@ class CountingAnimation extends StatefulWidget {
   final int precision;
   final Curve curve;
   final Duration duration;
-  final TextStyle style;
+  final TextStyle largeValueStyle;
   final TextAlign textAlign;
   final TextDirection textDirection;
   final Locale locale;
@@ -18,7 +18,7 @@ class CountingAnimation extends StatefulWidget {
   final String semanticsLabel;
   final String separator;
   final String prefix;
-  final style1;
+  final TextStyle smallValueStyle;
   final String suffix;
   final Color color;
 
@@ -30,11 +30,11 @@ class CountingAnimation extends StatefulWidget {
     this.color,
     this.curve = Curves.linear,
     this.duration = const Duration(milliseconds: 250),
-    this.style,
+    this.largeValueStyle,
     this.textAlign,
     this.textDirection,
     this.suffix = '',
-    this.style1,
+    this.smallValueStyle,
     this.locale,
     this.softWrap,
     this.overflow,
@@ -92,12 +92,12 @@ class _CountupState extends State<CountingAnimation>
       key: UniqueKey(),
       animation: _animation,
       precision: widget.precision,
-      style: widget.style,
+      largeValueStyle: widget.largeValueStyle,
       textAlign: widget.textAlign,
       textDirection: widget.textDirection,
       locale: widget.locale,
       color: widget.color,
-      style1: widget.style1,
+      smallValueStyle: widget.smallValueStyle,
       softWrap: widget.softWrap,
       overflow: widget.overflow,
       textScaleFactor: widget.textScaleFactor,
@@ -115,7 +115,7 @@ class _CountupAnimatedText extends AnimatedWidget {
 
   final Animation<double> animation;
   final int precision;
-  final TextStyle style;
+  final TextStyle largeValueStyle;
   final TextAlign textAlign;
   final TextDirection textDirection;
   final Locale locale;
@@ -128,15 +128,15 @@ class _CountupAnimatedText extends AnimatedWidget {
   final String prefix;
   final String suffix;
   final Color color;
-  final style1;
+  final TextStyle smallValueStyle;
 
   _CountupAnimatedText({
     Key key,
     @required this.animation,
     @required this.precision,
-    this.style,
+    this.largeValueStyle,
     this.suffix,
-    this.style1,
+    this.smallValueStyle,
     this.color = Colors.white,
     this.textAlign,
     this.textDirection,
@@ -155,28 +155,51 @@ class _CountupAnimatedText extends AnimatedWidget {
     var mediaQuery = MediaQuery.of(context);
     return FittedBox(
       child: RichText(
-        text: TextSpan(
-            text: animation.value.toInt().toString(),
-            style: style != null
-                ? style
-                : Theme.of(context).textTheme.headline4.copyWith(
-                    fontSize: mediaQuery.size.width < 350 ? 16 : 20,
-                    color: color),
-            children: [
-              TextSpan(
-                  text: '.' +
-                      animation.value
-                          .toStringAsFixed(2)
-                          .split('.')[1]
-                          .replaceAllMapped(
-                              reg, (Match match) => '${match[1]}$separator') +
-                      suffix,
-                  style: style1 != null
-                      ? style1
-                      : Theme.of(context).textTheme.headline4.copyWith(
-                          fontSize: mediaQuery.size.width < 350 ? 12 : 14,
-                          color: color)),
-            ]),
+        text: prefix != null
+            ? TextSpan(
+                text: prefix + animation.value.toInt().toString(),
+                style: largeValueStyle != null
+                    ? largeValueStyle
+                    : Theme.of(context).textTheme.headline4.copyWith(
+                        fontSize: mediaQuery.size.width < 350 ? 16 : 20,
+                        color: color),
+                children: [
+                    TextSpan(
+                        text: '.' +
+                            animation.value
+                                .toStringAsFixed(2)
+                                .split('.')[1]
+                                .replaceAllMapped(reg,
+                                    (Match match) => '${match[1]}$separator') +
+                            suffix,
+                        style: smallValueStyle != null
+                            ? smallValueStyle
+                            : Theme.of(context).textTheme.headline4.copyWith(
+                                fontSize: mediaQuery.size.width < 350 ? 12 : 14,
+                                color: color)),
+                  ])
+            : TextSpan(
+                text: animation.value.toInt().toString(),
+                style: largeValueStyle != null
+                    ? largeValueStyle
+                    : Theme.of(context).textTheme.headline4.copyWith(
+                        fontSize: mediaQuery.size.width < 350 ? 16 : 20,
+                        color: color),
+                children: [
+                    TextSpan(
+                        text: '.' +
+                            animation.value
+                                .toStringAsFixed(2)
+                                .split('.')[1]
+                                .replaceAllMapped(reg,
+                                    (Match match) => '${match[1]}$separator') +
+                            suffix,
+                        style: smallValueStyle != null
+                            ? smallValueStyle
+                            : Theme.of(context).textTheme.headline4.copyWith(
+                                fontSize: mediaQuery.size.width < 350 ? 12 : 14,
+                                color: color)),
+                  ]),
         textAlign: this.textAlign ?? TextAlign.start,
         textDirection: this.textDirection,
         locale: this.locale,
