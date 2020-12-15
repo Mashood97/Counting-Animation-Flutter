@@ -61,7 +61,7 @@ duration: Duration(seconds: 500),
 
 ```
 
-#SUPPORT
+# SUPPORT
 You liked this package? then give it a star. If you want to help then:
 Star this repository.
 Send a Pull Request with new features, see Contribution Guidelines.
