@@ -11,9 +11,13 @@ How to use this package:
 
 3) In your code, you can use it like this:
   first import the package:
+  ```
  import 'package:counting_animation/counting_animation.dart';
+  ```
 
-then use it like this:
+then use it like this in your code:
+  ```
+
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -50,3 +54,13 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+```
+This will count the value from 0.0 to 50.35 with animation, By default the animation curve is set to Curves.linear and duration is set to 250 milliseconds, you can change it according to your needs by adding these properties:
+```
+curve: Curves.decelerate,
+duration: Duration(seconds: 500),
+
+```
+
+
